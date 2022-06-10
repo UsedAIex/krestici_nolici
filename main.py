@@ -1,5 +1,8 @@
-from flask import Flask, render_template
 import logging
+
+from flask import Flask, render_template
+
+from my_button.button import Button
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'wuhiscbaghmrejmsh.ilek,'
@@ -14,10 +17,14 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
+
+
 @app.route('/')
 def start():
-
-    return render_template('button.html')
+    but = Button()
+    # if not but.button_1():
+    #     but.button_1.label = 'a'
+    return render_template('button.html', form=but)
 
 
 if __name__ == '__main__':
